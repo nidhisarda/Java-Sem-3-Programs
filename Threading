@@ -28,5 +28,31 @@ public class GFG {
             }
         }
     }
-    
+ // Function to print even numbers
+    public void printEvenNumber()
+    {
+        synchronized (this)
+        {
+            // Print number till the N
+            while (counter < N) {
+                // If count is odd then print
+                while (counter % 2 == 1) {
+                    // Exception handle
+                    try {
+                        wait();
+                    }
+                    catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Print the number
+                System.out.print(
+                        counter + " ");
+                // Increment counter
+                counter++;
+                // Notify to 2nd thread
+                notify();
+            }
+        }
+    }
     
